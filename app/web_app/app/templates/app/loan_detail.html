@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Loan Application {{ loan.title }}{% endblock %}
+
+{% block content %}
+<h1>Loan Application — {{ loan.title }}</h1>
+
+<h2>Loan Details</h2>
+<p><strong>Title:</strong> {{ loan.title }}</p>
+<p><strong>Amount:</strong> ${{ loan.loan_amnt }}</p>
+<p><strong>Term:</strong> {{ loan.term }} months</p>
+<p><strong>Purpose:</strong> {{ loan.get_purpose_display }}</p>
+<p><strong>Issue Date:</strong> {{ loan.issue_d }}</p>
+
+<h2>Borrower</h2>
+<p><strong>Name:</strong> <a href="{% url 'borrower-detail' loan.borrower.pk %}">{{ loan.borrower.name }}</a></p>
+<p><strong>Annual Income:</strong> ${{ loan.borrower.annual_inc }}</p>
+<p><strong>FICO:</strong> {{ loan.borrower.fico_range_low }} — {{ loan.borrower.fico_range_high }}</p>
+<p><strong>DTI:</strong> {{ loan.borrower.dti }}%</p>
+
+<h2>Prediction</h2>
+<p><strong>Decision:</strong> {{ loan.decision }}</p>
+<p><strong>Confidence</strong> {{ loan.confidence }}%</p>
+
+<a href="{% url 'loan-create' %}">New Application</a>
+{% endblock content %}

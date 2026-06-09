@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Loan Prediction{% endblock %}
+
+{% block content %}
+<h1>Loan Prediction</h1>
+
+<h2>Borrowers <a href="{% url 'borrower-create' %}">+ New</a></h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>FICO</th>
+            <th>Annual Income</th>
+            <th>DTI</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for borrower in borrowers %}
+        <tr>
+            <td><a href="{% url 'borrower-detail' borrower.pk %}">{{ borrower.name }}</a></td>
+            <td>{{ borrower.addr_state }}</td>
+            <td>{{ borrower.fico_range_low }} — {{ borrower.fico_range_high }}</td>
+            <td>${{ borrower.annual_inc }}</td>
+            <td>{{ borrower.dti }}%</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No borrowers yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Loan Applications <a href="{% url 'loan-create' %}">+ New</a></h2>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Borrower</th>
+            <th>Amount</th>
+            <th>Purpose</th>
+            <th>Decision</th>
+            <th>Confidence</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for loan in loans %}
+        <tr>
+            <td><a href="{% url 'loan-detail' loan.pk %}">{{ loan.title }}</a></td>
+            <td><a href="{% url 'borrower-detail' loan.borrower.pk %}">{{ loan.borrower.name }}</a></td>
+            <td>${{ loan.loan_amnt }}</td>
+            <td>{{ loan.get_purpose_display }}</td>
+            <td>{{ loan.decision }}</td>
+            <td>{{ loan.confidence}}%</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No loans yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

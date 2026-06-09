@@ -1,0 +1,18 @@
+services:
+  prediction_service:
+    build:
+      context: .
+      dockerfile: app/prediction_service/Dockerfile
+    ports:
+      - "8001:8001"
+
+  django:
+    build:
+      context: .
+      dockerfile: app/web_app/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+        - .env
+    depends_on:
+      - prediction_service

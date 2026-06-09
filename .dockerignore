@@ -1,0 +1,10 @@
+data/
+notebooks/
+*.csv
+*.parquet
+*.ipynb
+__pycache__/
+.git/
+.gitignore
+*.pyc
+app/web_app/db.sqlite3

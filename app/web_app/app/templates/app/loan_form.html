@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block title %} New Loan {% endblock %}
+
+{% block content %}
+<h1>New Loan Application</h1>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <p>{{ form.title.label_tag }} {{ form.title }} {{ form.title.errors }}</p>
+    
+    <p>
+        {{ form.borrower.label_tag }}
+        {{ form.borrower }}
+        <a href="{% url 'borrower-create' %}?next={{ request.path }}">+ New</a>
+        {{ form.borrower.errors }}
+    </p>
+    
+    <p>{{ form.sec_borrower.label_tag }} {{ form.sec_borrower }} {{ form.sec_borrower.errors }}</p>
+    <p>{{ form.loan_amnt.label_tag }} {{ form.loan_amnt }} {{ form.loan_amnt.errors }}</p>
+    <p>{{ form.term.label_tag }} {{ form.term }} {{ form.term.errors }}</p>
+    <p>{{ form.purpose.label_tag }} {{ form.purpose }} {{ form.purpose.errors }}</p>
+    <p>{{ form.int_rate.label_tag }} {{ form.int_rate }} {{ form.int_rate.errors }}</p>
+    <p>{{ form.issue_d.label_tag }} {{ form.issue_d }} {{ form.issue_d.errors }}</p>
+    
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

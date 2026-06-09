@@ -1,0 +1,107 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Borrower {borrower.name} {% endblock %}
+
+{% block content %}
+<h1>{{ borrower.name }}</h1>
+
+<h2>Personal</h2>
+<p><strong>Annual Income:</strong> ${{ borrower.annual_inc }}</p>
+<p><strong>Employment Title:</strong> {{ borrower.emp_title }}</p>
+<p><strong>Employment Length:</strong> {{ borrower.emp_length }} years</p>
+<p><strong>Home Ownership:</strong> {{ borrower.get_home_ownership_display }}</p>
+<p><strong>Verification Status:</strong> {{ borrower.get_verification_status_display }}</p>
+<p><strong>State:</strong> {{ borrower.addr_state }}</p>
+<p><strong>ZIP Code:</strong> {{ borrower.zip_code }}</p>
+
+<h2>Credit Profile</h2>
+<p><strong>FICO Score:</strong> {{ borrower.fico_range_low }} — {{ borrower.fico_range_high }}</p>
+<p><strong>DTI:</strong> {{ borrower.dti }}%</p>
+<p><strong>Earliest Credit Line:</strong> {{ borrower.earliest_cr_line }}</p>
+<p><strong>Delinquencies (last 2 years):</strong> {{ borrower.delinq_2yrs }}</p>
+<p><strong>Inquiries (last 6 months):</strong> {{ borrower.inq_last_6mths }}</p>
+<p><strong>Months Since Last Delinquency:</strong> {{ borrower.mths_since_last_delinq }}</p>
+<p><strong>Months Since Last Public Record:</strong> {{ borrower.mths_since_last_record }}</p>
+<p><strong>Open Accounts:</strong> {{ borrower.open_acc }}</p>
+<p><strong>Public Records:</strong> {{ borrower.pub_rec }}</p>
+<p><strong>Revolving Balance:</strong> ${{ borrower.revol_bal }}</p>
+<p><strong>Revolving Utilization:</strong> {{ borrower.revol_util }}%</p>
+<p><strong>Total Accounts:</strong> {{ borrower.total_acc }}</p>
+<p><strong>Collections ex. Medical (last 12 months):</strong> {{ borrower.collections_12_mths_ex_med }}</p>
+<p><strong>Months Since Last Major Derogatory:</strong> {{ borrower.mths_since_last_major_derog }}</p>
+<p><strong>Accounts Currently Delinquent:</strong> {{ borrower.acc_now_delinq }}</p>
+<p><strong>Total Collection Amount:</strong> ${{ borrower.tot_coll_amt }}</p>
+<p><strong>Total Current Balance:</strong> ${{ borrower.tot_cur_bal }}</p>
+
+<h2>Installment Accounts</h2>
+<p><strong>Open Active Installment Accounts:</strong> {{ borrower.open_act_il }}</p>
+<p><strong>Open Accounts (last 6 months):</strong> {{ borrower.open_acc_6m }}</p>
+<p><strong>Installment Accounts Opened (last 12 months):</strong> {{ borrower.open_il_12m }}</p>
+<p><strong>Installment Accounts Opened (last 24 months):</strong> {{ borrower.open_il_24m }}</p>
+<p><strong>Months Since Most Recent Installment:</strong> {{ borrower.mths_since_rcnt_il }}</p>
+<p><strong>Total Installment Balance:</strong> ${{ borrower.total_bal_il }}</p>
+<p><strong>Installment Utilization:</strong> {{ borrower.il_util }}%</p>
+<p><strong>Months Since Oldest Installment Account:</strong> {{ borrower.mo_sin_old_il_acct }}</p>
+<p><strong>Installment Accounts:</strong> {{ borrower.num_il_tl }}</p>
+<p><strong>Total Installment High Credit Limit:</strong> ${{ borrower.total_il_high_credit_limit }}</p>
+
+<h2>Revolving Accounts</h2>
+<p><strong>Revolving Accounts Opened (last 12 months):</strong> {{ borrower.open_rv_12m }}</p>
+<p><strong>Revolving Accounts Opened (last 24 months):</strong> {{ borrower.open_rv_24m }}</p>
+<p><strong>Max Balance on Bankcard:</strong> ${{ borrower.max_bal_bc }}</p>
+<p><strong>Total Revolving Credit Limit:</strong> ${{ borrower.total_rev_hi_lim }}</p>
+<p><strong>Revolving Accounts:</strong> {{ borrower.num_rev_accts }}</p>
+<p><strong>Revolving Accounts with Balance > $0:</strong> {{ borrower.num_rev_tl_bal_gt_0 }}</p>
+<p><strong>Active Revolving Accounts:</strong> {{ borrower.num_actv_rev_tl }}</p>
+<p><strong>Open Revolving Accounts:</strong> {{ borrower.num_op_rev_tl }}</p>
+<p><strong>Months Since Oldest Revolving Account:</strong> {{ borrower.mo_sin_old_rev_tl_op }}</p>
+<p><strong>Months Since Most Recent Revolving Account:</strong> {{ borrower.mo_sin_rcnt_rev_tl_op }}</p>
+<p><strong>Months Since Most Recent Revolving Delinquency:</strong> {{ borrower.mths_since_recent_revol_delinq }}</p>
+<p><strong>Total Balance ex. Mortgage:</strong> ${{ borrower.total_bal_ex_mort }}</p>
+
+<h2>Bankcard</h2>
+<p><strong>Bankcard Open to Buy:</strong> ${{ borrower.bc_open_to_buy }}</p>
+<p><strong>Bankcard Utilization:</strong> {{ borrower.bc_util }}%</p>
+<p><strong>Active Bankcard Accounts:</strong> {{ borrower.num_actv_bc_tl }}</p>
+<p><strong>Satisfactory Bankcard Accounts:</strong> {{ borrower.num_bc_sats }}</p>
+<p><strong>Bankcard Accounts:</strong> {{ borrower.num_bc_tl }}</p>
+<p><strong>% Bankcards > 75% Utilization:</strong> {{ borrower.percent_bc_gt_75 }}%</p>
+<p><strong>Total Bankcard Limit:</strong> ${{ borrower.total_bc_limit }}</p>
+<p><strong>Months Since Most Recent Bankcard:</strong> {{ borrower.mths_since_recent_bc }}</p>
+<p><strong>Months Since Most Recent Bankcard Delinquency:</strong> {{ borrower.mths_since_recent_bc_dlq }}</p>
+<p><strong>All Accounts Utilization:</strong> {{ borrower.all_util }}%</p>
+<p><strong>Max Balance on Bankcard:</strong> ${{ borrower.max_bal_bc }}</p>
+
+<h2>Derogatory & Public Records</h2>
+<p><strong>Public Record Bankruptcies:</strong> {{ borrower.pub_rec_bankruptcies }}</p>
+<p><strong>Tax Liens:</strong> {{ borrower.tax_liens }}</p>
+<p><strong>Charge-offs (last 12 months):</strong> {{ borrower.chargeoff_within_12_mths }}</p>
+<p><strong>Delinquent Amount:</strong> ${{ borrower.delinq_amnt }}</p>
+<p><strong>Accounts Ever 120+ Days Past Due:</strong> {{ borrower.num_accts_ever_120_pd }}</p>
+<p><strong>Accounts 120+ DPD (last 2 months):</strong> {{ borrower.num_tl_120dpd_2m }}</p>
+<p><strong>Accounts 30+ DPD:</strong> {{ borrower.num_tl_30dpd }}</p>
+<p><strong>Accounts 90+ DPD (last 24 months):</strong> {{ borrower.num_tl_90g_dpd_24m }}</p>
+
+<h2>General Account History</h2>
+<p><strong>Finance Inquiries:</strong> {{ borrower.inq_fi }}</p>
+<p><strong>Total Credit Union Tradelines:</strong> {{ borrower.total_cu_tl }}</p>
+<p><strong>Inquiries (last 12 months):</strong> {{ borrower.inq_last_12m }}</p>
+<p><strong>Accounts Opened (last 24 months):</strong> {{ borrower.acc_open_past_24mths }}</p>
+<p><strong>Average Current Balance:</strong> ${{ borrower.avg_cur_bal }}</p>
+<p><strong>Months Since Most Recent Inquiry:</strong> {{ borrower.mths_since_recent_inq }}</p>
+<p><strong>Months Since Most Recent Account:</strong> {{ borrower.mo_sin_rcnt_tl }}</p>
+<p><strong>Mortgage Accounts:</strong> {{ borrower.mort_acc }}</p>
+<p><strong>Satisfactory Accounts:</strong> {{ borrower.num_sats }}</p>
+<p><strong>Accounts Opened (last 12 months):</strong> {{ borrower.num_tl_op_past_12m }}</p>
+<p><strong>% Accounts Never Delinquent:</strong> {{ borrower.pct_tl_nvr_dlq }}%</p>
+<p><strong>Total High Credit Limit:</strong> ${{ borrower.tot_hi_cred_lim }}</p>
+
+<h2>Loans</h2>
+{% for loan in borrower.loans.all %}
+    <p><a href="{% url 'loan-detail' loan.pk %}">{{ loan.title }} — ${{ loan.loan_amnt }} — {{ loan.decision }}</a></p>
+{% empty %}
+    <p>No loans yet.</p>
+{% endfor %}
+
+<a href="{% url 'loan-create' %}?borrower={{ borrower.pk }}">+ New Loan Application</a>
+{% endblock %}
