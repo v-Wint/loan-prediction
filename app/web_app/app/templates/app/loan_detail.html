@@ -18,6 +18,14 @@
 <p><strong>FICO:</strong> {{ loan.borrower.fico_range_low }} — {{ loan.borrower.fico_range_high }}</p>
 <p><strong>DTI:</strong> {{ loan.borrower.dti }}%</p>
 
+{% if loan.sec_borrower %}
+<h2>Secondary Borrower</h2>
+<p><strong>Name:</strong> <a href="{% url 'borrower-detail' loan.sec_borrower.pk %}">{{ loan.sec_borrower.name }}</a></p>
+<p><strong>Annual Income:</strong> ${{ loan.sec_borrower.annual_inc }}</p>
+<p><strong>FICO:</strong> {{ loan.sec_borrower.fico_range_low }} — {{ loan.sec_borrower.fico_range_high }}</p>
+<p><strong>DTI:</strong> {{ loan.sec_borrower.dti }}%</p>
+{% endif %}
+
 <h2>Prediction</h2>
 <p><strong>Decision:</strong> {{ loan.decision }}</p>
 <p><strong>Confidence</strong> {{ loan.confidence }}%</p>
